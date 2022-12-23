@@ -22,8 +22,8 @@ console.log('data', signature)
 
 ## API
 
-<a name="listkeys"></a>
-### listkeys() ⇒ <code>keys</code>
+
+### <a name="listkeys"></a>listkeys() ⇒ <code>keys</code>
 List the keys of the device
 
 #### Returns
@@ -34,8 +34,8 @@ List the keys of the device
     * `object[].did` - PKH DID of the key
 
 
-<a name="ethsignmessage"></a>
-### ethSignMessage(message, slot, address) ⇒ <code>signature</code>
+
+### <a name="ethsignmessage"></a>ethSignMessage(message, slot, address) ⇒ <code>signature</code>
 Sign a message using EIP191.
 
 #### Params
@@ -47,8 +47,8 @@ Sign a message using EIP191.
 * `string` - The signature encoded as a hex string
 
 
-<a name="ethsignhash"></a>
-### ethSignHash(hash, slot, address) ⇒ <code>signature</code>
+
+### <a name="ethsignhash"></a>ethSignHash(hash, slot, address) ⇒ <code>signature</code>
 Sign a hash and return a recoverable signature.
 
 #### Params
@@ -60,8 +60,8 @@ Sign a hash and return a recoverable signature.
 * `string` - The signature encoded as a hex string
 
 
-<a name="sign"></a>
-### sign(hash, slot) ⇒ <code>signature</code>
+
+### <a name="sign"></a>sign(hash, slot) ⇒ <code>signature</code>
 Sign a hash
 
 #### Params
@@ -74,13 +74,13 @@ Sign a hash
     * `object.s` - The s value encoded as hex
 
 
-<a name="generatekey"></a>
-### generateKey() ⇒ <code>void</code>
+
+### <a name="generatekey"></a>generateKey() ⇒ <code>void</code>
 Generate the 3rd key of the Halo chip.
 
 
-<a name="writestorage"></a>
-### writeStorage(slot, data) ⇒ <code>void</code>
+
+### <a name="writestorage"></a>writeStorage(slot, data) ⇒ <code>void</code>
 Write a 32 bytes to the latch storage.
 Warning: writing to the storage is permanent, not possible
 to remove or update the value afterwards.
@@ -90,8 +90,8 @@ to remove or update the value afterwards.
 * `data`: `string` - The 32 bytes encoded as a hex string
 
 
-<a name="readstorage"></a>
-### readStorage(slot) ⇒ <code>data</code>
+
+### <a name="readstorage"></a>readStorage(slot) ⇒ <code>data</code>
 Read the 32 bytes from the latch storage.
 
 #### Params
