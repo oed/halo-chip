@@ -118,7 +118,6 @@ async function sendCmd (cmd, slot, data) {
   else if (data) {
     payload = u8a.concat([ cmd, slot, data ])
   }
-  console.log('cmd', toHex(payload))
   try {
     const req = {
       publicKey: {
