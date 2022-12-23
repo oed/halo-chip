@@ -23,7 +23,7 @@ console.log('data', signature)
 ## API
 
 
-### listkeys() ⇒ <code>keys</code>
+### `listkeys()` ⇒ `keys`
 List the keys of the device
 
 #### Returns
@@ -35,7 +35,7 @@ List the keys of the device
 
 
 
-### ethSignMessage(message, slot, address) ⇒ <code>signature</code>
+### `ethSignMessage(message, slot, address)` ⇒ `signature`
 Sign a message using EIP191.
 
 #### Params
@@ -48,7 +48,7 @@ Sign a message using EIP191.
 
 
 
-### ethSignHash(hash, slot, address) ⇒ <code>signature</code>
+### `ethSignHash(hash, slot, address)` ⇒ `signature`
 Sign a hash and return a recoverable signature.
 
 #### Params
@@ -61,7 +61,7 @@ Sign a hash and return a recoverable signature.
 
 
 
-### sign(hash, slot) ⇒ <code>signature</code>
+### `sign(hash, slot)` ⇒ `signature`
 Sign a hash
 
 #### Params
@@ -75,15 +75,15 @@ Sign a hash
 
 
 
-### generateKey() ⇒ <code>void</code>
+### `generateKey()` ⇒ `void`
 Generate the 3rd key of the Halo chip.
 
 
-
-### writeStorage(slot, data) ⇒ <code>void</code>
+### `writeStorage(slot, data)` ⇒ `void`
 Write a 32 bytes to the latch storage.
-Warning: writing to the storage is permanent, not possible
-to remove or update the value afterwards.
+
+***Warning:** writing to the storage is permanent, not possible
+to remove or update the value afterwards.*
 
 #### Params
 * `slot`: `number` - The slot index of the key to use
@@ -91,7 +91,7 @@ to remove or update the value afterwards.
 
 
 
-### readStorage(slot) ⇒ <code>data</code>
+### `readStorage(slot)` ⇒ `data`
 Read the 32 bytes from the latch storage.
 
 #### Params
