@@ -101,7 +101,7 @@ function readKey (bytes, slot) {
       key,
       slot,
       address,
-      did: 'did:pkh:eip155:1:' + address
+      did: 'did:pkh:eip155:1:' + address.toLowerCase()
     },
     remainder: bytes.slice(length)
   }
