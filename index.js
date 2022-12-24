@@ -23,7 +23,7 @@ export async function ethSignHash (hash, slot, address) {
   const sig = await sign(hash, slot)
   for (let i = 0; i < 2; ++i) {
     sig.recoveryParam = i
-    if (address === recoverAddress(hash, sig)) {
+    if (address.toLowerCase() === recoverAddress(hash, sig).toLowerCase()) {
       break;
     } else if (i === 1) {
       throw new Error('Address provided does not correspond to slot: ' + slot)
