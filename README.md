@@ -17,7 +17,7 @@ keys.map(k => console.log)
 const address = keys[0].address
 
 const signature = await ethSignMessage('test123', 1, address)
-console.log('data', signature)
+console.log('signature:', signature)
 ```
 
 ## API
@@ -82,8 +82,9 @@ Generate the 3rd key of the Halo chip.
 ### `writeStorage(slot, data)` ⇒ `void`
 Write a 32 bytes to the latch storage.
 
-***Warning:** writing to the storage is permanent, not possible
-to remove or update the value afterwards.*
+> ***Warning:***
+> Write operation is permanent. It's not possible
+to remove or update the value afterwards.
 
 #### Params
 * `slot`: `number` - The slot index of the key to use
