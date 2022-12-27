@@ -1,6 +1,6 @@
 # HaLo chip
 
-An easy to use javascript library for interacting with HaLo chips
+An easy to use javascript library for interacting with [HaLo chips](https://medium.com/kong-land-embassy/eternal-physical-crypto-b487ee8a1553)
 
 ## Installation
 
