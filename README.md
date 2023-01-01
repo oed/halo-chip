@@ -20,6 +20,23 @@ const signature = await ethSignMessage('test123', 1, address)
 console.log('signature:', signature)
 ```
 
+### Usage with Ceramic
+
+```javascript
+import { DIDSession } from 'did-session'
+import { EthereumWebAuth, getAccountId } from '@didtools/pkh-ethereum'
+
+const keys = await listKeys()
+const { address, slot } = keys[0]
+const accountId = { address: address.toLowerCase(), chainId: { reference: 1, namespace: 'eip155' } }
+  
+const authMethod = await EthereumWebAuth.getAuthMethod({
+  request: async ({ method, params }) => ethSignMessage(params[0], slot, params[1])
+}, accountId)
+const session = await DIDSession.authorize(authMethod, { resources: ['ceramic://*?model=kjz...'] })
+```
+
+
 ## API
 
 
