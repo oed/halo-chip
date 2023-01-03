@@ -21,12 +21,17 @@ export function ethSignMessage (message, slot, address) {
 
 export async function ethSignHash (hash, slot, address) {
   const sig = await sign(hash, slot)
+  const errMsg = 'Address provided does not correspond to slot: ' + slot
+  return ethJoinSignature(hash, sig, address, errMsg)
+}
+
+function ethJoinSignature (hash, sig, address, errMsg) {
   for (let i = 0; i < 2; ++i) {
     sig.recoveryParam = i
     if (address.toLowerCase() === recoverAddress(hash, sig).toLowerCase()) {
       break;
     } else if (i === 1) {
-      throw new Error('Address provided does not correspond to slot: ' + slot)
+      throw new Error(errMsg)
     }
   }
   return joinSignature(sig)
@@ -104,6 +109,44 @@ function readKey (bytes, slot) {
       did: 'did:pkh:eip155:1:' + address.toLowerCase()
     },
     remainder: bytes.slice(length)
+  }
+}
+
+export function parseURLParams (params) {
+  if (!params) return null
+  const fromHexUpper = s => fromHex('0x' + s.toLowerCase())
+  const parsed = Object.fromEntries((new URLSearchParams(params)).entries())
+  // public keys
+  const keyBytes = fromHexUpper(parsed.static)
+  const { key: key1, remainder: remainder1 } = readKey(keyBytes, 1)
+  const { key: key2, remainder: remainder2 } = readKey(remainder1, 2)
+  const keys = [ key1, key2 ]
+  try {
+    const { key: key3 } = readKey(remainder2, 3)
+    keys.push(key3)
+  } catch (e) {}
+
+  // clean up key2 signature
+  const errMsg = 'Signature of key 2 not valid'
+  const challenge = '0x' + parsed.cmd.toLowerCase().slice(4, 64 + 4)
+  const eipSig = toEIP2Signature(unpackDERSignature(fromHexUpper(parsed.res)))
+  const signature = ethJoinSignature(challenge, eipSig, key2.address, errMsg)
+
+  return {
+    tagVersion: '0x' + parsed.v,
+    keys,
+    proof: {
+      challenge,
+      signature,
+      counter: parseInt(challenge.slice(2, 10), 16) // 32-bit BigEndian
+    },
+    storage: [{
+      slot: 1,
+      value: '0x' + parsed.latch1.toLowerCase()
+    }, {
+      slot: 2,
+      value: '0x' + parsed.latch2.toLowerCase()
+    }]
   }
 }
 
